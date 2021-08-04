@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+// Variables declaration with $
+$gold:gold;
+$big:4em;
+$small:1em;
+$medium:2em;
+$fontFamily:'Open Sans', sans-serif;
+
+// Mixin sind Funktionen , aber in Scss
+@mixin my-font-style{
+    font-family: $fontFamily;
+    font-size:$medium;
+    font-weight:700;
+}
+
+@mixin my-colors{
+    background-color: tomato;
+    color: $gold;
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+    color: $gold;
+    font-size:$big;
+    font-family: $fontFamily ;
+   
+
+}
+
+header{
+    background-color: rgba(0,0,0,.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
+    // Nesting
+    h2{
+        color: #fff;
+    }
+    // normalerweise in CSS
+    // header h2 {
+    //     color: #fff;
+    // }
+    ul {
+        list-style: none;
+        display: flex;
+        li {
+            padding-right: 30px;
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+    }
+
+}
+
+.card {
+    padding: 100px 8%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:20px;
+    font-family: $fontFamily;
+    // .card img , wenn normal Style CSS
+    // kurze Schreibweise in SCSS mit &
+    // .card_image
+    &_image{
+        width: 100%;
+    }
+    &_item{
+        padding: 10px;
+        // & geht auch für Pseudo Elements
+        &:hover{
+            box-shadow: 0 0 5px rgba(0,0,0,0.4);
+        }
+    }
+    // nesting with Combinators
+    &_title:hover{
+        +p{
+            color: gold;
+        }
+    }
+}
+
+.step{
+    padding: 0 13%;
+    display: flex;
+    justify-content:space-between;
+    list-style:none;
+    font-family: $fontFamily;
+    font-size:$medium;
+    font-weight:800;
+    li{
+        padding: 8px 30px;
+        &:nth-child(1){
+            background-color: blue;
+        }
+        &:nth-child(2){
+            background-color: violet;
+        }
+        &:nth-child(3){
+            background-color: lime;
+        }
+        &:nth-child(4){
+            background-color: orange;
+        }
+    }
+}
+
+.large{
+    background-color: rgb(41,129,245);
+    color: #fff;
+    padding: 10px 100px;
+    border: none;
+    font-size:3em;
+}
+
+.container{
+    text-align: center;
+    margin: 100px 0;
+}
+
+// @extend damit kann man die Style vererben
+
+.subscribe{
+    @extend .container;
+    button{
+        @extend .large;
+        background: violet;
+    }
+    p{
+        // mit @include rufen wir unsere mixin auf
+        @include my-font-style;
+    }
+}
+
+.contact{
+    h2{
+        @include my-colors;
+    }
+}
